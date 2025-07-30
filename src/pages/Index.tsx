@@ -4,34 +4,70 @@ import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
 export default function Index() {
-  const spices = [
+  const products = [
     {
-      name: "Вьетнамская корица",
-      price: "890₽",
-      description: "Ароматная корица из провинции Куанг Нам",
-      image: "/img/4ab026ae-b96a-4d3d-9532-60612a027967.jpg",
-      popular: true
+      name: "Рыбный соус Нам Чам",
+      price: "1190₽",
+      description: "Премиальный соус из анчоусов острова Фукуок",
+      image: "/img/4ffa4b8e-2477-48d7-9ff7-b67cf89b3582.jpg",
+      popular: true,
+      category: "Соусы"
     },
     {
-      name: "Звездчатый анис",
-      price: "650₽", 
-      description: "Традиционная специя для фо и других блюд",
-      image: "/img/4ab026ae-b96a-4d3d-9532-60612a027967.jpg",
-      popular: false
+      name: "Рисовая лапша Фо",
+      price: "450₽", 
+      description: "Традиционная лапша для супа фо",
+      image: "/img/4ffa4b8e-2477-48d7-9ff7-b67cf89b3582.jpg",
+      popular: true,
+      category: "Лапша"
     },
     {
       name: "Черный перец Фукуок",
       price: "1290₽",
       description: "Премиальный перец с острова Фукуок",
       image: "/img/4ab026ae-b96a-4d3d-9532-60612a027967.jpg",
-      popular: true
+      popular: true,
+      category: "Специи"
     },
     {
-      name: "Лемонграсс сушеный",
-      price: "450₽",
-      description: "Цитрусовая трава для супов и чаев",
+      name: "Чай с лотосом",
+      price: "850₽",
+      description: "Зеленый чай с лепестками лотоса",
+      image: "/img/0702f3e9-83e3-4223-9e1d-c494761cb5ae.jpg",
+      popular: false,
+      category: "Чай"
+    },
+    {
+      name: "Вьетнамская корица",
+      price: "890₽",
+      description: "Ароматная корица из провинции Куанг Нам",
       image: "/img/4ab026ae-b96a-4d3d-9532-60612a027967.jpg",
-      popular: false
+      popular: false,
+      category: "Специи"
+    },
+    {
+      name: "Соус Хойсин",
+      price: "680₽",
+      description: "Сладкий соус для мяса и роллов",
+      image: "/img/4ffa4b8e-2477-48d7-9ff7-b67cf89b3582.jpg",
+      popular: false,
+      category: "Соусы"
+    },
+    {
+      name: "Жасминовый чай",
+      price: "720₽",
+      description: "Ароматный чай с цветами жасмина",
+      image: "/img/0702f3e9-83e3-4223-9e1d-c494761cb5ae.jpg",
+      popular: false,
+      category: "Чай"
+    },
+    {
+      name: "Рисовая бумага Банх Чанг",
+      price: "320₽",
+      description: "Тонкая рисовая бумага для роллов",
+      image: "/img/4ffa4b8e-2477-48d7-9ff7-b67cf89b3582.jpg",
+      popular: true,
+      category: "Ингредиенты"
     }
   ];
 
@@ -161,36 +197,58 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-tropical-dark mb-4">
-              Каталог специй
+              Аутентичные продукты
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Аутентичные вьетнамские специи и приправы для создания настоящих блюд Юго-Восточной Азии
+              Полная коллекция традиционных вьетнамских продуктов - от специй и соусов до чая и лапши для настоящей азиатской кухни
             </p>
           </div>
           
+          {/* Categories Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <Button variant="outline" className="border-tropical-orange text-tropical-orange hover:bg-tropical-orange hover:text-white">
+              Все продукты
+            </Button>
+            <Button variant="outline" className="border-tropical-green text-tropical-green hover:bg-tropical-green hover:text-white">
+              Специи
+            </Button>
+            <Button variant="outline" className="border-tropical-gold text-tropical-gold hover:bg-tropical-gold hover:text-white">
+              Соусы
+            </Button>
+            <Button variant="outline" className="border-tropical-orange text-tropical-orange hover:bg-tropical-orange hover:text-white">
+              Чай
+            </Button>
+            <Button variant="outline" className="border-tropical-green text-tropical-green hover:bg-tropical-green hover:text-white">
+              Лапша
+            </Button>
+          </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {spices.map((spice, index) => (
+            {products.map((product, index) => (
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
                 <div className="relative overflow-hidden rounded-t-lg">
-                  {spice.popular && (
+                  {product.popular && (
                     <Badge className="absolute top-3 left-3 z-10 bg-tropical-orange hover:bg-tropical-orange">
                       🔥 Популярное
                     </Badge>
                   )}
+                  <Badge className="absolute top-3 right-3 z-10 bg-tropical-green/90 hover:bg-tropical-green text-white">
+                    {product.category}
+                  </Badge>
                   <img 
-                    src={spice.image} 
-                    alt={spice.name}
+                    src={product.image} 
+                    alt={product.name}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-lg text-tropical-dark">{spice.name}</CardTitle>
-                  <CardDescription className="text-gray-600">{spice.description}</CardDescription>
+                  <CardTitle className="text-lg text-tropical-dark">{product.name}</CardTitle>
+                  <CardDescription className="text-gray-600">{product.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-tropical-orange">{spice.price}</span>
+                    <span className="text-2xl font-bold text-tropical-orange">{product.price}</span>
                     <Button size="sm" className="bg-tropical-green hover:bg-tropical-dark">
                       <Icon name="Plus" size={16} className="mr-1" />
                       В корзину
@@ -203,7 +261,7 @@ export default function Index() {
 
           <div className="text-center mt-12">
             <Button size="lg" variant="outline" className="border-tropical-orange text-tropical-orange hover:bg-tropical-orange hover:text-white">
-              Смотреть все специи
+              Смотреть все продукты
               <Icon name="ArrowRight" size={20} className="ml-2" />
             </Button>
           </div>
@@ -219,9 +277,9 @@ export default function Index() {
                 О Вьетнаме и традициях
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Вьетнам — страна с богатейшими кулинарными традициями, где специи играют ключевую роль 
-                в создании неповторимых вкусов. Наши специи выращиваются в идеальных климатических условиях 
-                тропиков и собираются вручную местными фермерами.
+                Вьетнам — страна с богатейшими кулинарными традициями, где каждый ингредиент имеет свою историю. 
+                От рыбного соуса до ароматного чая — наши продукты создаются по вековым рецептам 
+                и доставляются прямо из регионов происхождения.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -238,8 +296,8 @@ export default function Index() {
                     <Icon name="Check" size={14} className="text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-tropical-dark">Идеальный климат</h4>
-                    <p className="text-gray-600">Тропические условия создают уникальные ароматы</p>
+                    <h4 className="font-semibold text-tropical-dark">Региональное происхождение</h4>
+                    <p className="text-gray-600">Каждый продукт из своего исторического региона</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -247,8 +305,8 @@ export default function Index() {
                     <Icon name="Check" size={14} className="text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-tropical-dark">Ручной сбор</h4>
-                    <p className="text-gray-600">Каждая специя собирается и обрабатывается вручную</p>
+                    <h4 className="font-semibold text-tropical-dark">Полная коллекция</h4>
+                    <p className="text-gray-600">От специй до лапши — всё для вьетнамской кухни</p>
                   </div>
                 </div>
               </div>
